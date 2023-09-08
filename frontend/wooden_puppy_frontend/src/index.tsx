@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+document.title = "Wooden Puppy"
 root.render(
   <React.StrictMode>
     <App />
