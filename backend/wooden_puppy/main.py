@@ -1,6 +1,13 @@
 from pydantic import BaseModel
 from fastapi import FastAPI
 from challenge import ChallengesCollectionBase, Challenge
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "http://localhost:3000",
+    "https://wooden-puppy.xyz"
+]
+methods = ["GET", "POST", "OPTIONS"]
 
 class Global:
     challenges = [
@@ -13,11 +20,16 @@ class Global:
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=methods
+)
 
 @app.get("/challenge/{challenge_password}")
 async def get_challenge(challenge_password):
     challenge = Global.challenges_dict.get(challenge_password, Global.challenges_dict[None])
-    return {'challange': challenge.prompt}
+    return {'challenge': challenge.prompt}
 
 class SolveChallengeRequestBody(BaseModel):
     solution: str
