@@ -81,7 +81,7 @@ function App() {
                   <label className="mt-3">Challenge:</label>
                 </div>
                 <div className="col-md-12">
-                  <label>{challengePrompt}</label>
+                  <p className="challenge-prompt">{challengePrompt}</p>
                 </div>
                 <div className="col-md-12">
                   <input
